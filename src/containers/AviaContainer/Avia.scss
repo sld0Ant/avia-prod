@@ -1,0 +1,174 @@
+.avia {
+  &__header {
+    width: 754px;
+    height: 100px;
+    background: url('../../media/logo.png') no-repeat 50%;
+  }
+  &__body {
+    width: 502px;
+    display: flex;
+    gap: 20px;
+  }
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__tickets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 502px;
+    display: flex;
+    flex-direction: column;
+    .avia__card {
+      margin-bottom: 20px;
+    }
+  }
+  &__card {
+    border: 0px !important;
+    .ant-card {
+      background: white;
+    }
+    .ant-card-body {
+      border: 0px !important;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1) !important;
+      border-radius: 5px !important;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    width: 502px;
+
+    border-radius: 5px !important;
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      display: flex;
+
+      align-items: center;
+      width: 462px;
+      div {
+        margin-left: 175px;
+        height: 36px;
+        width: 110px;
+        background: url('../../media/pics/s7.png');
+      }
+      h1 {
+        margin: 0;
+        width: 147px;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 24px;
+        color: #2196f3;
+      }
+    }
+    &-entry {
+      width: 462px;
+      display: flex;
+      gap: 20px;
+    }
+    &-eta,
+    &-transfer,
+    &-timeway {
+      span:nth-child(1) {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        color: #a0b0b9;
+        letter-spacing: 0.5px;
+      }
+      span:nth-child(2) {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        color: #4a4a4a;
+      }
+      display: flex;
+      flex-direction: column;
+      width: 140px;
+    }
+  }
+  &__filters {
+    &--check {
+      padding: 20px;
+      width: 232px;
+      height: 252px;
+      background: white;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      .avia__check-title {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+    &--most {
+      box-sizing: border-box;
+      width: 503px;
+      height: 50px;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  &__checkbox {
+    display: flex;
+    vertical-align: middle;
+    font-size: 13px;
+    line-height: 20px;
+    color: #4a4a4a;
+    margin-left: 0 !important;
+    .ant-checkbox-input {
+      border: 1px solid #9abbce !important;
+      box-sizing: border-box;
+      border-radius: 2px;
+      height: 15px;
+      width: 15px;
+      margin-right: 10px;
+    }
+  }
+  &__button {
+    border: 1px;
+    background: white;
+    &:active,
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      background: #2196f3 !important;
+    }
+    height: 50px !important;
+
+    &:nth-child(1) {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 20px;
+      border-top-left-radius: 5px !important;
+      border-bottom-left-radius: 5px !important;
+      border-top-right-radius: 0px !important;
+      border-bottom-right-radius: 0px !important;
+      width: 252px;
+    }
+
+    &:nth-child(2) {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 20px;
+      border-left-width: 0 !important;
+      border-top-right-radius: 5px !important;
+      border-bottom-right-radius: 5px !important;
+      border-top-left-radius: 0px !important;
+      border-bottom-left-radius: 0px !important;
+      width: 251px;
+    }
+  }
+}
