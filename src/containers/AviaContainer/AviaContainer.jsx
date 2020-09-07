@@ -1,20 +1,18 @@
 import React from 'react';
 import { Avia } from '../../components';
-import { fetchSearchId, fetchTickets } from '../../service/fetchTickets.js';
-
 import { useSelector, useDispatch } from 'react-redux';
 import './Avia.scss';
 
 export default function AviaContainer() {
-  const search = useSelector((state) => state.searchId);
-  const fetched = useSelector((state) => state.fetched);
+  const state = useSelector(state => state);
+  const fetched = useSelector((state) => state.data);
   const loading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
-
-  if (!search && !loading) {
-    dispatch({ type: 'LOADING' });
-    dispatch({ type: 'FETCH_SEARCH' });
+  if (loading && !fetched.length) {
+    dispatch({ type: 'FETCH_TICKETS' });
+    dispatch({ type: 'LOADING'})
   }
-  if (search && !fetched.length && loading) dispatch({ type: 'FETCH_TICKETS' });
+
+
   return <Avia />;
 }

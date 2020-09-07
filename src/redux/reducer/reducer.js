@@ -1,79 +1,57 @@
-import act from '../actions';
-import { useDispatch } from 'react-redux';
-import flattenDeep from 'lodash/flattenDeep';
-const initialState = {
-  searchId: '',
-  fetched: [],
-  filter: {
-    transfers: { all: true, none: true, one: true, two: true, three: true },
-    most: { cheap: true, fast: false },
-  },
-  loading: false,
-};
+import { filterControl, applyFiltersToView } from '../../tools';
 
-const invert = (state, key) => !state.filter.transfers[key];
+const initialState = {
+  data: [],
+  preparedData: [],
+  filters: [true, true, true, true, true],
+  sortBy: 'price',
+  loading: true,
+};
 
 export default function rootReducer(originalState = initialState, action) {
   const state = { ...originalState };
 
   switch (action.type) {
     case 'LOADING': {
-      state.loading = true;
-      break;
+      const draft = { ...state };
+      return { ...draft, loading: !draft.loading };
     }
-    case 'FETCH_TICKETS_ASYNC': {
-      state.fetched = action.value;
-      state.loading = false;
-      break;
-    }
-    case 'FETCH_SEARCH_ASYNC': {
-      console.log(action.value);
-      state.searchId = action.value.searchId;
-      break;
-    }
-    case 'ALL_TRANSFERS': {
-      if (!state.filter.transfers.all)
-        Object.keys(state.filter.transfers).forEach((key) => (state.filter.transfers[key] = true));
 
-      break;
+    case 'FETCH_TICKETS_ASYNC': {
+      return applyFiltersToView(
+        filterControl(
+          {
+            ...state,
+            data: action.value,
+          },
+          4
+        )
+      );
+    }
+
+    case 'ALL_TRANSFERS': {
+      return applyFiltersToView(filterControl(state, 4));
     }
     case 'NO_TRANSFERS': {
-      state.filter.transfers['none'] = !state.filter.transfers['none'];
-      break;
+      return applyFiltersToView(filterControl(state, 0));
     }
     case 'ONE_TRANSFER': {
-      state.filter.transfers['one'] = !state.filter.transfers['one'];
-      break;
+      return applyFiltersToView(filterControl(state, 1));
     }
     case 'TWO_TRANSFERS': {
-      state.filter.transfers['two'] = !state.filter.transfers['two'];
-      break;
+      return applyFiltersToView(filterControl(state, 2));
     }
     case 'THREE_TRANSFERS': {
-      state.filter.transfers['three'] = !state.filter.transfers['three'];
-      break;
+      return applyFiltersToView(filterControl(state, 3));
     }
     case 'ONLY_CHEAP': {
-      state.filter.most.cheap = true;
-      state.filter.most.fast = false;
-      break;
+      return applyFiltersToView({ ...state, sortBy: 'price' });
     }
     case 'ONLY_FAST': {
-      state.filter.most.cheap = false;
-      state.filter.most.fast = true;
-      break;
+      return applyFiltersToView({ ...state, sortBy: 'duration' });
     }
+    default:
+      break;
   }
-
-  if (
-    state.filter.transfers.none &&
-    state.filter.transfers.one &&
-    state.filter.transfers.two &&
-    state.filter.transfers.three
-  )
-    state.filter.transfers.all = true;
-  else {
-    state.filter.transfers.all = false;
-  }
-  return state;
+  return { ...state };
 }

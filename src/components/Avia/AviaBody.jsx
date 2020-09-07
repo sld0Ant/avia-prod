@@ -1,6 +1,9 @@
 import React from 'react';
+import { Spin } from 'antd';
+import { useSelector } from 'react-redux';
 import { AviaFiltersContainer } from '../../containers';
-import { AviaTickets } from '../';
+import { AviaTickets } from '..';
+
 function AviaBodyAside() {
   return (
     <section className="avia__aside">
@@ -10,10 +13,11 @@ function AviaBodyAside() {
 }
 
 function AviaBodyMain() {
+  const preparedData = useSelector((state) => state.preparedData);
   return (
     <section className="avia__main">
       <AviaFiltersContainer type="most-filter" />
-      <AviaTickets />
+      {(!preparedData.length && <Spin size="large" />) || <AviaTickets />}
     </section>
   );
 }

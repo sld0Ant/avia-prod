@@ -54,7 +54,9 @@
         margin-left: 175px;
         height: 36px;
         width: 110px;
-        background: url('../../media/pics/s7.png');
+        background-size: contain!important;
+        background-repeat: no-repeat!important;
+        background-position:center!important;
       }
       h1 {
         margin: 0;
@@ -171,4 +173,14 @@
       width: 251px;
     }
   }
+}
+.ant-spin-dot-spin {
+
+}
+.ant-spin{
+margin-top: 30px!important;
+}
+.ant-spin-lg .ant-spin-dot {
+
+  transform: scale(3);
 }
