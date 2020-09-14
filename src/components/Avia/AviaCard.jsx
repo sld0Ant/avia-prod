@@ -22,12 +22,16 @@ const transfers = (n) => (stops) => {
 const transfersFrom = transfers(2);
 const transfersTo = transfers(1);
 const hours2datetime = (date, duration) => {
-  const hours =
-    (+date[0] + +duration[0] + +('0.' + (date[1] + duration[1]))) / 24;
-  const datetime = (+('0.' + hours.toString().split('.')[1]) * 24)
+  const hours = (+date[0] + +duration[0] + +`0.${date[1] + duration[1]}`) / 24;
+  const datetime = (+`0.${hours.toString().split('.')[1]}` * 24)
     .toString()
     .split('.');
-  return [datetime[0], Math.floor(+('0.' + datetime[1]) * 60)];
+  return [
+    datetime[0] < 10 ? `0${datetime[0]}` : datetime[0],
+    Math.floor(+`0.${datetime[1]}` * 60) < 10
+      ? `0${Math.floor(+`0.${datetime[1]}` * 60)}`
+      : Math.floor(+`0.${datetime[1]}` * 60),
+  ];
 };
 
 export default function AviaCard({

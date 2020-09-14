@@ -53,5 +53,6 @@ export default function rootReducer(originalState = initialState, action) {
     default:
       break;
   }
+
   return { ...state };
 }
