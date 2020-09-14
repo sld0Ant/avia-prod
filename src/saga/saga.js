@@ -1,6 +1,6 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 
-import { separateByStops, formatData } from '../tools';
+import { separateByStops, formatData } from '../tools/';
 
 const formatResponseToJSON = (url, concreteProp) =>
   fetch(url)
