@@ -1,5 +1,3 @@
-import { useDispatch } from 'react-redux';
-
 const LOADING = 'LOADING';
 const FETCH_TICKETS_ASYNC = 'FETCH_TICKETS_ASYNC';
 const ALL_TRANSFERS = 'ALL_TRANSFERS';
@@ -10,7 +8,8 @@ const THREE_TRANSFERS = 'THREE_TRANSFERS';
 const ONLY_CHEAP = 'ONLY_CHEAP';
 const ONLY_FAST = 'ONLY_FAST';
 
-const actionMaker = (type, value = null) => (dispatch) => dispatch({ type });
+const actionMaker = (type, value = null) => (dispatch) =>
+  dispatch({ type, value });
 
 const loading = actionMaker(LOADING);
 const allFilter = actionMaker(ALL_TRANSFERS);
